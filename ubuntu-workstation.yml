@@ -31,15 +31,16 @@
 #          - clang
           - vim
           - tmux          
-    # - name: install asdf
-    #   become: true
-    #   vars:
-    #     asdf_version: v0.6.2
-    #     asdf_user: ci
-    #     asdf_plugins:
-    #       - name: yq
-    #       - name: jq
-    #       - name: nodejs
-    #         versions: ["8.11.3"]
-    #         global: "8.11.3"
-    #   roles:
+    - name: install asdf
+      become: true
+      vars:
+        asdf_version: v0.6.2
+        asdf_user: ci
+        asdf_plugins:
+          - name: yq
+          - name: jq
+          - name: nodejs
+            versions: ["8.11.3"]
+            global: "8.11.3"
+      roles:
+       - asdf
