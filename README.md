@@ -1,8 +1,11 @@
 # workstation
 
 
+## prepare
 sudo apt update && sudo apt install -y unzip ansible git 
 
+## clone
 git clone https://github.com/rogeriorocha/workstation.git
 
-ansible-playbook tools/ubuntu.yml --ask-become-pass
+## ansible run
+ansible-playbook workstation/ubuntu-workstation.yml --ask-become-pass
