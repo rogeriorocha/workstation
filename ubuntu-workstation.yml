@@ -118,17 +118,24 @@
           - stern                      
           - kubectl
           - kubectx
-          - kubens
+#          - kubens
           - helm
           - terraform
           - kind
           - maven
           - kafkactl
-          - kcat
-          - python
+#          - kcat
+#          - python
           - tilt
           - vault
-
+    - block:
+      - name: configure tmux
+        git:
+          dest: ~/.tmux
+          repo: "https://github.com/rogeriorocha/.tmux.git"
+          accept_hostkey: yes
+          update: no
+        when: ansible_os_family == "Debian"
 
 
 
