@@ -97,10 +97,33 @@
 
       - name: asdf add plugins
         shell: |
-          asdf plugin add yq
-          asdf install yq latest
-          asdf global yq latest
-          yq --version
+          asdf plugin add "{{ item }}"
+          asdf install "{{ item }}" latest
+          asdf global "{{ item }}" latest
+        loop:
+          - stern
+          - k9s        
+
+      # - name: asdf add plugins
+      #   shell: |
+      #     asdf plugin add yq
+      #     asdf install yq latest
+      #     asdf global yq latest
+          
+      #     asdf plugin add jq
+      #     asdf install jq latest
+      #     asdf global jq latest
+
+      #     asdf plugin add stern
+      #     asdf install stern latest
+      #     asdf global stern latest          
+          
+      #     asdf plugin add terraform
+      #     asdf install terraform 1.3.7
+      #     asdf install terraform 1.6.6
+      #     asdf install global 1.6.6
+
+
           
           
 
