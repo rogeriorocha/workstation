@@ -230,7 +230,7 @@
           - gruntfuggly.todo-tree
           - njpwerner.autodocstring
           - eamodio.gitlens
-          
+
     ### docker
     - block: 
       - name: Install Docker Key
@@ -275,9 +275,23 @@
           path: /home/{{ ansible_user_id }}/.zshrc
           regexp: '^plugins='
           line: 'plugins=(git docker docker-compose)'
-
-
-    ### Ulauncher - Application Launcher like macOS
+### awscli          
+    - block:
+      - name: Installing AWS CLI via pip3
+        become: true
+        pip:
+          name: awscli
+          executable: pip3
+          
+### vagrant
+    - block:
+      - name: Installing Vagrant 2.2.18
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+### Ulauncher - Application Launcher like macOS
     - block:
       - name: Adding Ulauncher Repository
         become: true
