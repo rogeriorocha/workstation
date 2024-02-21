@@ -1,0 +1,53 @@
+---
+- name: Install asdf
+  git:
+    dest: ~/.asdf
+    repo: "git@github.com:asdf-vm/asdf.git"
+    accept_hostkey: yes
+    update: no
+  when: ansible_os_family == "Debian"
+# zsh
+- name: add asdf to zsh
+  lineinfile:
+    path: ~/.zshrc
+    line: . $HOME/.asdf/asdf.sh
+  when: ansible_os_family == "Debian"
+  
+- name: add asdf-completions to zsh
+  lineinfile:
+    path: ~/.zshrc
+    line: . $HOME/.asdf/completions/asdf.bash
+  when: ansible_os_family == "Debian"
+# bashrc
+- name: add asdf to bashrc
+  lineinfile:
+    path: ~/.bashrc
+    line: . $HOME/.asdf/asdf.sh
+  when: ansible_os_family == "Debian"
+
+- name: add asdf-completions to bashrc
+  lineinfile:
+    path: ~/.bashrc
+    line: . $HOME/.asdf/completions/asdf.bash
+  when: ansible_os_family == "Debian"
+
+# - name: Install asdf
+#   homebrew:
+#     name: asdf
+#   when: ansible_os_family == "Darwin"
+
+# - name: Install asdf {{ lang }} plugins
+#   command: "asdf plugin-add {{ lang }}"
+#   args:
+#     creates: "~/.asdf/plugins/{{ lang }}"
+#   environment:
+#     PATH: "{{ ansible_env.PATH }}:{{ lookup('env', 'HOME') }}/.asdf/bin"
+
+# - name: Load nodejs key
+#   command: bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+#   when: lang == "nodejs"
+
+# - name: Install latest version of {{ lang }}
+#   shell: "asdf install {{ lang }} latest "
+#   environment:
+#     PATH: "{{ ansible_env.PATH }}:{{ lookup('env', 'HOME') }}/.asdf/bin"
