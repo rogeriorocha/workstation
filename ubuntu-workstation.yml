@@ -170,9 +170,32 @@
             alias less="bat --style=auto"
             alias ccat="pygmentize -g -P style=monokai"
         when: ansible_os_family == "Debian"
+      # alias ~/.bashrc
+      - name: add alias cargo to .bashrc - alias ls
+        lineinfile:
+          path: ~/.bashrc
+          line: alias ls="exa -lha --icons"
+        when: ansible_os_family == "Debian"
+      - name: add alias cargo to .bashrc - alias bat
+        lineinfile:
+          path: ~/.bashrc
+          line: alias bat="bat --style=auto"
+        when: ansible_os_family == "Debian"
+      - name: add alias cargo to .bashrc - alias less
+        lineinfile:
+          path: ~/.bashrc
+          line: alias less="bat --style=auto"
+        when: ansible_os_family == "Debian"
+      - name: add alias cargo to .bashrc - alias ccat
+        lineinfile:
+          path: ~/.bashrc
+          line: alias ccat="pygmentize -g -P style=monokai"
+        when: ansible_os_family == "Debian"
 
 
-        
+            
+            
+            
 
 
 
