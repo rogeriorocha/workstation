@@ -21,19 +21,19 @@
           - python3-pygments
           - git
           - bash-completion
-#          - gnupg-agent
+          - gnupg-agent
           - zsh
-#          - flameshot
-#          - fonts-hack
+          - flameshot
+          - fonts-hack
           - tilix
           - virtualbox
-#          - mlocate
+          - mlocate
 #          - mtr
-#          - zlib1g-dev
+          - zlib1g-dev
 #          - clang
           - vim
           - tmux       
-      when: ansible_os_family == "Disabled"    
+      when: ansible_os_family == "Debian"
     - block:
       - name: Verify if Oh-My-zsh is installed
         command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
@@ -131,7 +131,7 @@
 #          - python
           - tilt
           - vault
-        when: ansible_os_family == "Disabled"
+        when: ansible_os_family == "Debian"
     - block:
       - name: configure tmux
         git:
@@ -327,10 +327,6 @@
         apt:
           name: obs-studio
 
-      #     asdf plugin add terraform
-      #     asdf install terraform 1.3.7
-      #     asdf install terraform 1.6.6
-      #     asdf install global 1.6.6
 
 
           
