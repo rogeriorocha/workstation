@@ -11,20 +11,22 @@
         state: present
       loop:
 # asdf         - make
+          - cargo
           - curl
           - wget
           - apt-transport-https
           - ca-certificates
           - gnupg
           - python3-pip
+          - python3-pygments
           - git
           - bash-completion
 #          - gnupg-agent
           - zsh
 #          - flameshot
 #          - fonts-hack
-#          - tilix
-#          - virtualbox
+          - tilix
+          - virtualbox
 #          - mlocate
 #          - mtr
 #          - zlib1g-dev
@@ -144,6 +146,33 @@
           dest: "$HOME/.tmux.conf"
           state: link
         when: ansible_os_family == "Debian"  
+
+    - block:
+      # - name: Verify if Oh-My-zsh is installed
+      #   command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
+      #   register: ohmyzsh
+      #   ignore_errors: true
+      - name: Installing Rust Cargo
+        shell:
+          cmd: 'curl https://sh.rustup.rs -sSf | sh | bash'
+          warn: false
+        #when: ohmyzsh.rc != 0
+      - name: cargo install apps
+        shell: |
+          cargo install bat exa fd grex procs rg rmesg tokei ytop zoxide
+
+      - name: add alias cargo to zsh
+        lineinfile:
+          path: ~/.zshrc
+          line: |
+            alias ls="exa -lha --icons"
+            alias bat="bat --style=auto"
+            alias less="bat --style=auto"
+            alias ccat="pygmentize -g -P style=monokai"
+        when: ansible_os_family == "Debian"
+
+
+        
 
 
 
