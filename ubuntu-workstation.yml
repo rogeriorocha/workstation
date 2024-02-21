@@ -154,7 +154,7 @@
       #   ignore_errors: true
       - name: Installing Rust Cargo
         shell:
-          cmd: 'curl https://sh.rustup.rs -sSf | sh | bash'
+          cmd: 'curl https://sh.rustup.rs -sSf | sh '
           warn: false
         #when: ohmyzsh.rc != 0
       - name: cargo install apps
