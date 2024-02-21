@@ -142,8 +142,8 @@
         when: ansible_os_family == "Debian"
       - name: Create symbolic link  tmux.conf
         file:
-          src: "$HOME/.tmux/.tmux.conf"
-          dest: "$HOME/.tmux.conf"
+          src: "/home/{{ ansible_user_id }}/.tmux/.tmux.conf"
+          dest: "/home/{{ ansible_user_id }}/.tmux.conf"
           state: link
         when: ansible_os_family == "Debian"  
 
@@ -326,9 +326,3 @@
         become: true
         apt:
           name: obs-studio
-
-
-
-          
-          
-
