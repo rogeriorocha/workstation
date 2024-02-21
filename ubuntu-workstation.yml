@@ -34,7 +34,7 @@
     - block:
       - name: Verify if Oh-My-zsh is installed
         command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
-        register: ohmyzsh
+        register: zsh
         ignore_errors: true
       - name: Installing Oh-My-zsh
         shell:
@@ -62,3 +62,5 @@
           line: 'autoload -U compinit && compinit'
           state: present
     
+  roles:
+    - role: asdf
