@@ -94,3 +94,13 @@
           path: ~/.bashrc
           line: . $HOME/.asdf/completions/asdf.bash
         when: ansible_os_family == "Debian"
+
+      - name: asdf add plugins
+        shell: |
+          asdf plugin add yq
+          asdf install yq latest
+          asdf global yq latest
+          yq --version
+          
+          
+
