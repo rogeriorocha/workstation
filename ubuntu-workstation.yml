@@ -62,11 +62,35 @@
           line: 'autoload -U compinit && compinit'
           state: present
 
-  roles:
-  - role: ansible-role-asdf
-    asdf_plugins:
-    - name: "erlang"
-      versions: ["18.3", "20.1"]
-      global: "20.1"
-    - name: "elixir"
-      versions: "1.3.1"
+    - block:
+      - name: Install asdf
+        git:
+          dest: ~/.asdf
+          repo: "https://github.com/asdf-vm/asdf.git"
+          accept_hostkey: yes
+          update: no
+        when: ansible_os_family == "Debian"
+      # zsh
+      - name: add asdf to zsh
+        lineinfile:
+          path: ~/.zshrc
+          line: . $HOME/.asdf/asdf.sh
+        when: ansible_os_family == "Debian"
+        
+      - name: add asdf-completions to zsh
+        lineinfile:
+          path: ~/.zshrc
+          line: . $HOME/.asdf/completions/asdf.bash
+        when: ansible_os_family == "Debian"
+      # bashrc
+      - name: add asdf to bashrc
+        lineinfile:
+          path: ~/.bashrc
+          line: . $HOME/.asdf/asdf.sh
+        when: ansible_os_family == "Debian"
+
+      - name: add asdf-completions to bashrc
+        lineinfile:
+          path: ~/.bashrc
+          line: . $HOME/.asdf/completions/asdf.bash
+        when: ansible_os_family == "Debian"
