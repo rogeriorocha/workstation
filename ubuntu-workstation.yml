@@ -11,7 +11,7 @@
         state: present
       loop:
 # asdf         - make
-          - cargo
+#          - cargo
           - curl
           - wget
           - apt-transport-https
