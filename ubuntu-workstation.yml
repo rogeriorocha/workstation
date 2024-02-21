@@ -159,7 +159,7 @@
         #when: ohmyzsh.rc != 0
       - name: cargo install apps
         shell: |
-          cargo install bat exa fd grex procs rg rmesg tokei ytop zoxide
+          cargo install bat exa grex procs rmesg tokei ytop
 
       - name: add alias cargo to zsh
         lineinfile:
