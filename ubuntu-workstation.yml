@@ -136,6 +136,12 @@
           accept_hostkey: yes
           update: no
         when: ansible_os_family == "Debian"
+      - name: Create symbolic link  tmux.conf
+        file:
+          src: "$HOME/.tmux/.tmux.conf"
+          dest: "$HOME/.tmux.conf"
+          state: link
+        when: ansible_os_family == "Debian"  
 
 
 
