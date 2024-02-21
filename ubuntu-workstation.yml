@@ -162,7 +162,7 @@
           cargo install bat exa grex procs rmesg tokei ytop
 
       # alias ~/.zshrc
-      - name: add alias cargo to zsh
+      - name: add alias cargo to ~/.zshrc
         lineinfile:
           path: ~/.zshrc
           line: "{{ item }}"
@@ -173,25 +173,15 @@
           - alias ccat="pygmentize -g -P style=monokai"
         when: ansible_os_family == "Debian"
       # alias ~/.bashrc
-      - name: add alias cargo to .bashrc - alias ls
+      - name: add alias cargo to ~/.bashr
         lineinfile:
           path: ~/.bashrc
-          line: alias ls="exa -lha --icons"
-        when: ansible_os_family == "Debian"
-      - name: add alias cargo to .bashrc - alias bat
-        lineinfile:
-          path: ~/.bashrc
-          line: alias bat="bat --style=auto"
-        when: ansible_os_family == "Debian"
-      - name: add alias cargo to .bashrc - alias less
-        lineinfile:
-          path: ~/.bashrc
-          line: alias less="bat --style=auto"
-        when: ansible_os_family == "Debian"
-      - name: add alias cargo to .bashrc - alias ccat
-        lineinfile:
-          path: ~/.bashrc
-          line: alias ccat="pygmentize -g -P style=monokai"
+          line: "{{ item }}"
+        loop:  
+          - alias ls="exa -lha --icons"
+          - alias bat="bat --style=auto"
+          - alias less="bat --style=auto"
+          - alias ccat="pygmentize -g -P style=monokai"
         when: ansible_os_family == "Debian"
 
 
