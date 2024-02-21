@@ -31,6 +31,7 @@
 #          - clang
           - vim
           - tmux       
+      when: ansible_os_family == "Disabled"    
     - block:
       - name: Verify if Oh-My-zsh is installed
         command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
@@ -128,6 +129,7 @@
 #          - python
           - tilt
           - vault
+        when: ansible_os_family == "Disabled"
     - block:
       - name: configure tmux
         git:
