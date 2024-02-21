@@ -20,7 +20,7 @@
           - git
           - bash-completion
 #          - gnupg-agent
-#          - zsh
+          - zsh
 #          - flameshot
 #          - fonts-hack
 #          - tilix
