@@ -98,6 +98,9 @@
           line: . $HOME/.asdf/completions/asdf.bash
         when: ansible_os_family == "Debian"
 
+      - name: reload /.bashrc
+        shell: source ~/.bashrc
+
       - name: asdf add latest plugins
         shell: |
           asdf plugin add "{{ item }}"
@@ -307,22 +310,22 @@
 ###  - PEEK - Lightweight Screen Recorder that can export as GIF
 ###  - OBS-STUDIO - Screen Recorder and Casting Software 
 
-    - block:
-      - name: Adding Peek Repository
-        become: true
-        apt_repository:
-          repo: 'ppa:peek-developers/stable'
-      - name: Install Peek
-        become: true
-        apt:
-          name: peek
+    # - block:
+    #   - name: Adding Peek Repository
+    #     become: true
+    #     apt_repository:
+    #       repo: 'ppa:peek-developers/stable'
+    #   - name: Install Peek
+    #     become: true
+    #     apt:
+    #       name: peek
 
-    - block:
-      - name: Install obsproject Ubuntu Repo
-        become: true
-        apt_repository:
-          repo: 'ppa:obsproject/obs-studio'
-      - name: Install obs Studio
-        become: true
-        apt:
-          name: obs-studio
+    # - block:
+    #   - name: Install obsproject Ubuntu Repo
+    #     become: true
+    #     apt_repository:
+    #       repo: 'ppa:obsproject/obs-studio'
+    #   - name: Install obs Studio
+    #     become: true
+    #     apt:
+    #       name: obs-studio
