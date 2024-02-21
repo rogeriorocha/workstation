@@ -2,7 +2,7 @@
 - name: Install asdf
   git:
     dest: ~/.asdf
-    repo: "git@github.com:asdf-vm/asdf.git"
+    repo: "https://github.com/asdf-vm/asdf.git"
     accept_hostkey: yes
     update: no
   when: ansible_os_family == "Debian"
