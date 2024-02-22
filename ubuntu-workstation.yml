@@ -103,6 +103,7 @@
 
       - name: asdf add latest plugins
         shell: |
+          . $HOME/.asdf/asdf.sh
           asdf plugin add "{{ item }}"
           asdf install "{{ item }}" latest
           asdf global "{{ item }}" latest
