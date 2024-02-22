@@ -12,13 +12,15 @@
       loop:
 # asdf         - make
 #          - cargo
+          - vim
+          - tmux       
+          - python3-pip
+          - python3-pygments
           - curl
           - wget
           - apt-transport-https
           - ca-certificates
           - gnupg
-          - python3-pip
-          - python3-pygments
           - git
           - bash-completion
           - gnupg-agent
@@ -31,8 +33,6 @@
 #          - mtr
           - zlib1g-dev
 #          - clang
-          - vim
-          - tmux       
       when: ansible_os_family == "Debian"
     - block:
       - name: Verify if Oh-My-zsh is installed
