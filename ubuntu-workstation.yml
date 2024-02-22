@@ -98,12 +98,12 @@
           line: . $HOME/.asdf/completions/asdf.bash
         when: ansible_os_family == "Debian"
 
-      - name: reload /.bashrc
-        shell: source ~/.bashrc
+      - name: reload source $HOME/.asdf/asdf.sh
+        shell: . $HOME/.asdf/asdf.sh
 
       - name: asdf add latest plugins
         shell: |
-          . $HOME/.asdf/asdf.sh
+          
           asdf plugin add "{{ item }}"
           asdf install "{{ item }}" latest
           asdf global "{{ item }}" latest
@@ -125,7 +125,6 @@
           - stern                      
           - kubectl
           - kubectx
-#          - kubens
           - helm
           - terraform
           - kind
@@ -161,6 +160,10 @@
           cmd: 'curl https://sh.rustup.rs -sSf | RUSTUP_INIT_SKIP_PATH_CHECK=yes sh -s -- -y'
           warn: false
         #when: ohmyzsh.rc != 0
+      
+      - name: reload $HOME/.cargo/env
+        shell: . $HOME/.cargo.env
+
       - name: cargo install apps
         shell: |
           cargo install bat exa grex procs rmesg tokei ytop
