@@ -103,7 +103,6 @@
 
       - name: asdf add latest plugins
         shell: |
-          
           asdf plugin add "{{ item }}"
           asdf install "{{ item }}" latest
           asdf global "{{ item }}" latest
