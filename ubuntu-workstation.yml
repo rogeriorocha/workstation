@@ -3,12 +3,12 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Update apt packages
-      become: true
-      apt:
-        upgrade: no
-        update_cache: yes
-        cache_valid_time: 86400 #One day
+    # - name: Update apt packages
+    #   become: true
+    #   apt:
+    #     upgrade: no
+    #     update_cache: no
+    #     #cache_valid_time: 86400 #One day
 
     - name: Installing Linux Apps
       become: true
