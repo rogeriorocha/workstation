@@ -3,6 +3,13 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+
     - name: Installing Linux Apps
       become: true
       apt:
@@ -16,6 +23,7 @@
           - tmux       
           - python3-pip
           - python3-pygments
+          - zsh          
           - curl
           - wget
           - apt-transport-https
@@ -24,7 +32,6 @@
           - git
           - bash-completion
           - gnupg-agent
-          - zsh
           - flameshot
           - fonts-hack
           - tilix
@@ -329,3 +336,47 @@
     #     become: true
     #     apt:
     #       name: obs-studio
+
+###  - Install AZ CLI
+
+    - block:
+      - name: Installing AZ CLI
+        shell:
+          cmd: 'curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+          warn: false
+
+      # - name: Installing Linux Apps
+      #   become: true
+      #   apt:
+      #     name: '{{ item }}'
+      #     install_recommends: yes
+      #     state: present
+      #   loop:    
+      #     - ca-certificates 
+      #     - curl 
+      #     - apt-transport-https 
+      #     - lsb-release 
+      #     - gnupg
+
+      # - name: Creates directory
+      #   ansible.builtin.file:
+      #     path: /etc/apt/keyrings
+      #     state: directory
+      #     recurse: true
+
+      # - name: Install Microsoft Key
+      #   become: true
+      #   apt_key:
+      #     url: 'https://packages.microsoft.com/keys/microsoft.asc'
+      #     state: present
+
+      # - name: Add the Azure CLI software repository
+      #   bash: |
+      #     AZ_DIST=$(lsb_release -cs)
+      #     echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_DIST main" |
+      #         sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+      # - name: Install azure-cli
+      #   become: true
+      #   apt:
+      #     name: azure-cli
